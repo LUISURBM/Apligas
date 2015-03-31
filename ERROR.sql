@@ -1,0 +1,1 @@
+select * from SYS.USER_ERRORS where NAME = 'SLC_SP_SET_RECPUBLICOS'

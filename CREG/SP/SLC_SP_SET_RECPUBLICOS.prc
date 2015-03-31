@@ -17,8 +17,8 @@ IS
    V_SLC_MERCADO_ESPECIAL_ID   NUMBER (10, 0);
    V_MERCADO                   NUMBER (10, 0);
    V_MERCADO_ESPECIAL          NUMBER (10, 0);
-   V_IND_APORTE_ANT            CHAR (1);
-   V_IND_APORTE CHAR(1);
+   V_IND_APORTE_ANT            NUMBER;
+   V_IND_APORTE NUMBER;
    SPCALL_ERROR                EXCEPTION;
    SPLOGIC_ERROR               EXCEPTION;
    VD_AD_CLIENT_ID             NUMBER (10, 0);
@@ -112,8 +112,7 @@ BEGIN
                                           VD_AD_USER_ID,
                                           V_IND_APORTE,
                                           V_IND_APORTE_ANT,
-                                          V_TIENE_APORTES,
-                                          MSG_ERROR
+                                          V_TIENE_APORTES
                                          );
 
             UPDATE APLIGAS.SLC_MERCADO
