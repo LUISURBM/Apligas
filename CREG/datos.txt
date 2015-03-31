@@ -1,0 +1,23 @@
+repositorio de SVN
+URL: http://svn.wog.co/repos/apligas
+usuario: lurbina@wog.co
+clave: luisf123
+
+
+Conexion a base de datos (desarrollo)
+url=jdbc:oracle:thin:@54.208.17.10:1521:XE
+username=APLIGAS
+password=APLIGAS
+
+
+Conexion a base de datos (compilacion)
+url=jdbc:db2://ec2-23-20-5-169.compute-1.amazonaws.com:50000/APLIGAS
+username=apligas
+password=apligas
+
+
+Ingreso a eag
+url: http://190.144.66.82:8088/eag/acegilogin.jsp
+user: lurbina
+pass: puntomlm
+
