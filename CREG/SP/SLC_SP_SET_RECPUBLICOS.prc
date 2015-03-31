@@ -89,6 +89,11 @@ BEGIN
                                                      MSG_ERROR,
                                                      ERROR_SOURCE
                                                     );
+
+               IF (MSG_ERROR IS NOT NULL)
+               THEN
+                  RAISE SPCALL_ERROR;
+               END IF;
             END IF;
 
             IF (V_GST_TARIFARIA_REF_ID IS NULL)
@@ -108,6 +113,12 @@ BEGIN
                                                   MSG_ERROR,
                                                   ERROR_SOURCE
                                                  );
+
+            IF (MSG_ERROR IS NOT NULL)
+            THEN
+               RAISE SPCALL_ERROR;
+            END IF;
+
             V_TIENE_APORTES :=
                APLIGAS.COM_FN_RTV_APORTE (VD_AD_CLIENT_ID,
                                           VD_AD_ORG_ID,
@@ -164,6 +175,11 @@ BEGIN
                                                      MSG_ERROR,
                                                      ERROR_SOURCE
                                                     );
+
+               IF (MSG_ERROR IS NOT NULL)
+               THEN
+                  RAISE SPCALL_ERROR;
+               END IF;
             END IF;
 
             IF (V_GST_TARIFARIA_REF_ID IS NULL)
@@ -183,6 +199,12 @@ BEGIN
                                                   MSG_ERROR,
                                                   ERROR_SOURCE
                                                  );
+
+            IF (MSG_ERROR IS NOT NULL)
+            THEN
+               RAISE SPCALL_ERROR;
+            END IF;
+
             V_TIENE_APORTES :=
                APLIGAS.COM_FN_RTV_APORTE (VD_AD_CLIENT_ID,
                                           VD_AD_ORG_ID,
