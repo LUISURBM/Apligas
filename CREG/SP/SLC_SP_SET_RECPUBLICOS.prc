@@ -1,3 +1,4 @@
+
 CREATE OR REPLACE PROCEDURE APLIGAS.SLC_SP_SET_RECPUBLICOS (
    PD_AD_USER_SESSION_ID   IN       NUMBER,
    PD_AD_CLIENT_ID         IN       NUMBER,
@@ -15,10 +16,10 @@ IS
    V_C_REGION_ID               NUMBER (10, 0);
    V_C_CITY_ID                 NUMBER (10, 0);
    V_SLC_MERCADO_ESPECIAL_ID   NUMBER (10, 0);
-   V_MERCADO                   NUMBER (10, 0);
+   V_SLC_MERCADO_ID            NUMBER (10, 0);
    V_MERCADO_ESPECIAL          NUMBER (10, 0);
    V_IND_APORTE_ANT            NUMBER;
-   V_IND_APORTE NUMBER;
+   V_IND_APORTE                NUMBER;
    SPCALL_ERROR                EXCEPTION;
    SPLOGIC_ERROR               EXCEPTION;
    VD_AD_CLIENT_ID             NUMBER (10, 0);
@@ -69,7 +70,8 @@ BEGIN
          OPEN C_MERCADO;
 
          FETCH C_MERCADO
-          INTO V_MERCADO, V_GST_TARIFARIA_REF_ID, V_C_REGION_ID, V_C_CITY_ID;
+          INTO V_SLC_MERCADO_ID, V_GST_TARIFARIA_REF_ID, V_C_REGION_ID,
+               V_C_CITY_ID;
 
          WHILE C_MERCADO%FOUND
          LOOP
@@ -122,7 +124,7 @@ BEGIN
              WHERE SLC_MERCADO_ID = V_SLC_MERCADO_ID;
 
             FETCH C_MERCADO
-             INTO V_MERCADO, V_GST_TARIFARIA_REF_ID, V_C_REGION_ID,
+             INTO V_SLC_MERCADO_ID, V_GST_TARIFARIA_REF_ID, V_C_REGION_ID,
                   V_C_CITY_ID;
          END LOOP;
 
@@ -130,7 +132,7 @@ BEGIN
       END;
    END IF;
 
-   IF (V_TIPO_MUNCIPIO = 'E')
+   IF (V_TIPO_MUNICIPIO = 'E')
    THEN
       DECLARE
          CURSOR C_MERCADO_ESPECIAL
@@ -143,8 +145,8 @@ BEGIN
          OPEN C_MERCADO_ESPECIAL;
 
          FETCH C_MERCADO_ESPECIAL
-          INTO V_SLC_MERCADO_ESPECIAL_ID, V_C_REGION_ID, V_C_CITY_ID,
-               V_C_SECTOR_ID;
+          INTO V_SLC_MERCADO_ESPECIAL_ID, V_GST_TARIFARIA_REF_ID,
+               V_C_REGION_ID, V_C_CITY_ID, V_C_SECTOR_ID;
 
          WHILE C_MERCADO_ESPECIAL%FOUND
          LOOP
@@ -187,8 +189,7 @@ BEGIN
                                           VD_AD_USER_ID,
                                           V_IND_APORTE,
                                           V_IND_APORTE_ANT,
-                                          V_TIENE_APORTES,
-                                          MSG_ERROR
+                                          V_TIENE_APORTES
                                          );
 
             UPDATE APLIGAS.SLC_MERCADO_ESPECIAL
@@ -198,8 +199,8 @@ BEGIN
              WHERE SLC_MERCADO_ESPECIAL_ID = V_SLC_MERCADO_ESPECIAL_ID;
 
             FETCH C_MERCADO_ESPECIAL
-             INTO V_SLC_MERCADO_ESPECIAL_ID, V_C_REGION_ID, V_C_CITY_ID,
-                  V_C_SECTOR_ID;
+             INTO V_SLC_MERCADO_ESPECIAL_ID, V_GST_TARIFARIA_REF_ID,
+                  V_C_REGION_ID, V_C_CITY_ID, V_C_SECTOR_ID;
          END LOOP;
 
          CLOSE C_MERCADO_ESPECIAL;

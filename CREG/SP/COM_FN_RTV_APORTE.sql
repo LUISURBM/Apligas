@@ -2,8 +2,8 @@ CREATE OR REPLACE FUNCTION APLIGAS.COM_FN_RTV_APORTE (
    FN_AD_USER_SESSION_ID   IN       NUMBER,
    FN_AD_CLIENT_ID         IN       NUMBER,
    FN_AD_ORG_ID            IN       NUMBER,
-   V_IND_APORTE            IN       NUMBER,
-   V_IND_APORTE_ANT        IN       NUMBER,
+   V_IND_APORTE            IN       CHAR,
+   V_IND_APORTE_ANT        IN       CHAR,
    V_TIENE_APORTES         OUT      CHAR
 )
    RETURN CHAR
